@@ -69,7 +69,7 @@ const deleteProduct: RequestHandler = catchAsync(
 // get all products
 const getAllProducts: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await ProductServices.getAllProductsFromDB()
+    const result = await ProductServices.getAllProductsFromDB(req.query)
 
     // check if the result is empty
     if (!result.length) {

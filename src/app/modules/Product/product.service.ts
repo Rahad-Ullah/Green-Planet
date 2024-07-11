@@ -2,6 +2,7 @@ import AppError from '../../errors/AppError'
 import { TProduct } from './product.interface'
 import { Product } from './product.model'
 import httpStatus from 'http-status'
+import { queryProducts } from './product.utils'
 
 // create new product
 const createProductIntoDB = async (payload: TProduct) => {
@@ -62,8 +63,10 @@ const deleteProductFromDB = async (id: string) => {
 }
 
 // get all products
-const getAllProductsFromDB = async () => {
-  const result = await Product.find()
+const getAllProductsFromDB = async (query: Record<string, unknown>) => {
+
+  // get products by query
+  const result = await queryProducts(query)
 
   return result
 }
