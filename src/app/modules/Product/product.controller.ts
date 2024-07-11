@@ -3,7 +3,6 @@ import catchAsync from '../../utils/catchAsync'
 import { ProductServices } from './product.service'
 import sendResponse from '../../utils/sendResponse'
 import httpStatus from 'http-status'
-import AppError from '../../errors/AppError'
 
 // create new product
 const createProduct: RequestHandler = catchAsync(
@@ -14,6 +13,22 @@ const createProduct: RequestHandler = catchAsync(
       success: true,
       statusCode: httpStatus.OK,
       message: 'Product added successfully',
+      data: result,
+    })
+  },
+)
+
+// retrieve single product
+const getSingleProduct: RequestHandler = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params
+
+    const result = await ProductServices.getSingleProductFromDB(id)
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'Product retrieved successfully',
       data: result,
     })
   },
@@ -46,5 +61,6 @@ const getAllProducts: RequestHandler = catchAsync(
 
 export const ProductControllers = {
   createProduct,
+  getSingleProduct,
   getAllProducts,
 }

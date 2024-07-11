@@ -17,6 +17,18 @@ const createProductIntoDB = async (payload: TProduct) => {
   return result
 }
 
+// get single product by id
+const getSingleProductFromDB = async (id: string) => {
+  const result = await Product.findById(id)
+
+  // check if the product exist
+  if (!result) {
+    throw new AppError(httpStatus.CONFLICT, 'This product is not found')
+  }
+
+  return result
+}
+
 // get all products
 const getAllProductsFromDB = async () => {
   const result = await Product.find()
@@ -26,5 +38,6 @@ const getAllProductsFromDB = async () => {
 
 export const ProductServices = {
   createProductIntoDB,
+  getSingleProductFromDB,
   getAllProductsFromDB,
 }

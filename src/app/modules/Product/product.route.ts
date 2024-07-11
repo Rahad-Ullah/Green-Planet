@@ -12,6 +12,9 @@ router.post(
   ProductControllers.createProduct,
 )
 
+// retrieve single product
+router.get('/:id', ProductControllers.getSingleProduct)
+
 // retrieve all products
 router.get('/', ProductControllers.getAllProducts)
 
