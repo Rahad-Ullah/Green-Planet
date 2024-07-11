@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-// Cart Item validation schema
-const cartItemValidationSchema = z.object({
+// order Item validation schema
+const orderItemValidationSchema = z.object({
   product: z.string({
     message: 'Product ID is required',
   }),
@@ -25,7 +25,7 @@ const createOrderValidationSchema = z.object({
     total: z.number().min(0, { message: 'Total must be a positive number' }),
     payment_type: z.enum(['Online', 'COD']),
     payment_status: z.enum(['Paid', 'Unpaid']),
-    products: z.array(cartItemValidationSchema),
+    products: z.array(orderItemValidationSchema),
   }),
 })
 
