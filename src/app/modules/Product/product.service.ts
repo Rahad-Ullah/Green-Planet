@@ -23,7 +23,7 @@ const getSingleProductFromDB = async (id: string) => {
 
   // check if the product exist
   if (!result) {
-    throw new AppError(httpStatus.CONFLICT, 'This product is not found')
+    throw new AppError(httpStatus.NOT_FOUND, 'This product is not found')
   }
 
   return result
@@ -34,13 +34,30 @@ const updateProductIntoDB = async (id: string, payload: Partial<TProduct>) => {
   // check if the product is exist
   const isProductExist = await Product.findById(id)
   if (!isProductExist) {
-    throw new AppError(httpStatus.CONFLICT, 'This product is not found')
+    throw new AppError(httpStatus.NOT_FOUND, 'This product is not found')
   }
 
   const result = await Product.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
   })
+  return result
+}
+
+// delete product by id
+const deleteProductFromDB = async (id: string) => {
+  const isProductExist = await Product.findById(id)
+
+  // check if the product exist
+  if (!isProductExist) {
+    throw new AppError(httpStatus.NOT_FOUND, 'This product is not found')
+  }
+
+  const result = await Product.findByIdAndUpdate(
+    id,
+    { isDeleted: true },
+    { new: true },
+  )
   return result
 }
 
@@ -55,5 +72,6 @@ export const ProductServices = {
   createProductIntoDB,
   getSingleProductFromDB,
   updateProductIntoDB,
+  deleteProductFromDB,
   getAllProductsFromDB,
 }

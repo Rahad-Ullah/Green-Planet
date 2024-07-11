@@ -22,6 +22,10 @@ router.patch(
   ProductControllers.updateProduct,
 )
 
+// delete product
+router.delete('/:id', ProductControllers.deleteProduct)
+
+
 // retrieve all products
 router.get('/', ProductControllers.getAllProducts)
 

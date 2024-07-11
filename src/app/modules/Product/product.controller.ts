@@ -50,6 +50,22 @@ const updateProduct: RequestHandler = catchAsync(
   },
 )
 
+// delete product by id
+const deleteProduct: RequestHandler = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params
+
+    const result = await ProductServices.deleteProductFromDB(id)
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'Product deleted successfully',
+      data: result,
+    })
+  },
+)
+
 // get all products
 const getAllProducts: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
@@ -79,5 +95,6 @@ export const ProductControllers = {
   createProduct,
   getSingleProduct,
   updateProduct,
+  deleteProduct,
   getAllProducts,
 }
