@@ -15,6 +15,13 @@ router.post(
 // retrieve single product
 router.get('/:id', ProductControllers.getSingleProduct)
 
+// update product
+router.patch(
+  '/:id',
+  validateRequest(productValidation.updateProductValidationSchema),
+  ProductControllers.updateProduct,
+)
+
 // retrieve all products
 router.get('/', ProductControllers.getAllProducts)
 

@@ -34,6 +34,22 @@ const getSingleProduct: RequestHandler = catchAsync(
   },
 )
 
+// update existing product
+const updateProduct: RequestHandler = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params
+
+    const result = await ProductServices.updateProductIntoDB(id, req.body)
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'Product updated successfully',
+      data: result,
+    })
+  },
+)
+
 // get all products
 const getAllProducts: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
@@ -62,5 +78,6 @@ const getAllProducts: RequestHandler = catchAsync(
 export const ProductControllers = {
   createProduct,
   getSingleProduct,
+  updateProduct,
   getAllProducts,
 }

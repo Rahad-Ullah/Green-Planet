@@ -29,6 +29,21 @@ const getSingleProductFromDB = async (id: string) => {
   return result
 }
 
+// update existing product
+const updateProductIntoDB = async (id: string, payload: Partial<TProduct>) => {
+  // check if the product is exist
+  const isProductExist = await Product.findById(id)
+  if (!isProductExist) {
+    throw new AppError(httpStatus.CONFLICT, 'This product is not found')
+  }
+
+  const result = await Product.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  })
+  return result
+}
+
 // get all products
 const getAllProductsFromDB = async () => {
   const result = await Product.find()
@@ -39,5 +54,6 @@ const getAllProductsFromDB = async () => {
 export const ProductServices = {
   createProductIntoDB,
   getSingleProductFromDB,
+  updateProductIntoDB,
   getAllProductsFromDB,
 }
