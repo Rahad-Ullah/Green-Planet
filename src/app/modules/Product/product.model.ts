@@ -34,6 +34,8 @@ const productShema = new Schema<TProduct>({
     type: Boolean,
     default: false,
   },
+}, {
+  timestamps: true
 })
 
 export const Product = model<TProduct>('Product', productShema)
