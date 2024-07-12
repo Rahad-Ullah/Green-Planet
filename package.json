@@ -1,5 +1,5 @@
 {
-  "name": "green-planet-nursery",
+  "name": "green-planet-nursery-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
