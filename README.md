@@ -4,10 +4,10 @@ The **Green Planet Nursery Server** allows users to buy plants with ease and pro
 
 ---
 
-### [Live Server](https://green-planet-nursery-client.vercel.app)
+### [Live Server](https://green-planet-nursery-server.vercel.app)
 
 ```console
-https://green-planet-nursery-client.vercel.app
+https://green-planet-nursery-server.vercel.app
 ```
 
 ## Used Technologies:
@@ -50,7 +50,7 @@ https://green-planet-nursery-client.vercel.app
 ### Clone the Repository:
 
 ```plain
-git clone https://green-planet-nursery-client.vercel.app.git
+git clone https://green-planet-nursery-server.vercel.app.git
 ```
 
 ### Install Dependencies:
