@@ -1,75 +1,75 @@
 import { Request, RequestHandler, Response } from 'express'
 import catchAsync from '../../utils/catchAsync'
-import { CategoryServices } from './Category.service'
 import sendResponse from '../../utils/sendResponse'
 import httpStatus from 'http-status'
+import { NewsletterServices } from './newletter.service'
 
-// create new category
-const createCategory: RequestHandler = catchAsync(
+// create new Newsletter
+const createNewsletter: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await CategoryServices.createCategoryIntoDB(req.body)
+    const result = await NewsletterServices.createNewsletterIntoDB(req.body)
 
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: 'Category created successfully',
+      message: 'Newsletter created successfully',
       data: result,
     })
   },
 )
 
-//  get single category
-const getSingleCategory: RequestHandler = catchAsync(
+//  get single Newsletter
+const getSingleNewsletter: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { id } = req.params
 
-    const result = await CategoryServices.getSingleCategoryFromDB(id)
+    const result = await NewsletterServices.getSingleNewsletterFromDB(id)
 
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: 'Category retrived successfully',
+      message: 'Newsletter retrived successfully',
       data: result,
     })
   },
 )
 
-//  update category
-const updateCategory: RequestHandler = catchAsync(
+//  update Newsletter
+const updateNewsletter: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { id } = req.params
 
-    const result = await CategoryServices.updateCategoryIntoDB(id, req.body)
+    const result = await NewsletterServices.updateNewsletterIntoDB(id, req.body)
 
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: 'Category updated successfully',
+      message: 'Newsletter updated successfully',
       data: result,
     })
   },
 )
 
-//  delete category
-const deleteCategory: RequestHandler = catchAsync(
+//  delete Newsletter
+const deleteNewsletter: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { id } = req.params
 
-    const result = await CategoryServices.deleteCategoryFromDB(id)
+    const result = await NewsletterServices.deleteNewsletterFromDB(id)
 
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: 'Category deleted successfully',
+      message: 'Newsletter deleted successfully',
       data: result,
     })
   },
 )
 
-// get all categories
-const getAllCategories: RequestHandler = catchAsync(
+// get all Newsletters
+const getAllNewsletters: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await CategoryServices.getAllCategoriesFromDB()
+    const result = await NewsletterServices.getAllNewslettersFromDB()
 
     if (!result.length) {
       sendResponse(res, {
@@ -84,16 +84,16 @@ const getAllCategories: RequestHandler = catchAsync(
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: 'Categories retrieved successfully',
+      message: 'Newsletters retrieved successfully',
       data: result,
     })
   },
 )
 
-export const CategoryControllers = {
-  createCategory,
-  getSingleCategory,
-  updateCategory,
-  deleteCategory,
-  getAllCategories,
+export const NewsletterControllers = {
+  createNewsletter,
+  getSingleNewsletter,
+  updateNewsletter,
+  deleteNewsletter,
+  getAllNewsletters,
 }

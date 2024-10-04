@@ -72,10 +72,10 @@ const getAllProducts: RequestHandler = catchAsync(
     const result = await ProductServices.getAllProductsFromDB(req.query)
 
     // check if the result is empty
-    if (!result.length) {
+    if (!result.products.length) {
       sendResponse(res, {
         success: false,
-        statusCode: httpStatus.NOT_FOUND,
+        statusCode: httpStatus.OK,
         message: 'No Data Found',
         data: result,
       })

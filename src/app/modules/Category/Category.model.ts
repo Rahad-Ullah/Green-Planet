@@ -8,6 +8,10 @@ const categorySchema = new Schema<TCategory>(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

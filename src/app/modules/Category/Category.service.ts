@@ -15,6 +15,16 @@ const createCategoryIntoDB = async (payload: TCategory) => {
   return result
 }
 
+// get single category
+const getSingleCategoryFromDB = async (id: string) => {
+  const result = await Category.findById(id)
+  if (!result) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Category Not Found')
+  }
+
+  return result
+}
+
 // update category
 const updateCategoryIntoDB = async (id: string, payload: TCategory) => {
   const isCategoryExist = await Category.findById(id)
@@ -31,17 +41,17 @@ const updateCategoryIntoDB = async (id: string, payload: TCategory) => {
 
 // delete category
 const deleteCategoryFromDB = async (id: string) => {
-    const isCategoryExist = await Category.findById(id)
-    if (!isCategoryExist) {
-      throw new AppError(httpStatus.NOT_FOUND, 'Category Not Found')
-    }
-  
-    const result = await Category.findByIdAndDelete(id, {
-      new: true,
-      runValidators: true,
-    })
-    return result
+  const isCategoryExist = await Category.findById(id)
+  if (!isCategoryExist) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Category Not Found')
   }
+
+  const result = await Category.findByIdAndDelete(id, {
+    new: true,
+    runValidators: true,
+  })
+  return result
+}
 
 // retrieve all categories
 const getAllCategoriesFromDB = async () => {
@@ -51,6 +61,7 @@ const getAllCategoriesFromDB = async () => {
 
 export const CategoryServices = {
   createCategoryIntoDB,
+  getSingleCategoryFromDB,
   updateCategoryIntoDB,
   deleteCategoryFromDB,
   getAllCategoriesFromDB,

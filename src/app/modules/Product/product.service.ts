@@ -64,10 +64,8 @@ const deleteProductFromDB = async (id: string) => {
 
 // get all products
 const getAllProductsFromDB = async (query: Record<string, unknown>) => {
-
   // get products by query
   const result = await queryProducts(query)
-
   return result
 }
 

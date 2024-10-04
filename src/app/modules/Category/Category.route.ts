@@ -12,6 +12,9 @@ router.post(
   CategoryControllers.createCategory,
 )
 
+// get single category
+router.get('/:id', CategoryControllers.getSingleCategory)
+
 // update category
 router.patch(
   '/:id',
@@ -20,10 +23,7 @@ router.patch(
 )
 
 // delete category
-router.delete(
-    '/:id',
-    CategoryControllers.deleteCategory,
-  )
+router.delete('/:id', CategoryControllers.deleteCategory)
 
 // get all categories
 router.get('/', CategoryControllers.getAllCategories)
